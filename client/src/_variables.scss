@@ -2,6 +2,11 @@
 
 $gap: 10px;
 
+// height: navbar-Menu-height + navbar-height + board-content-height = 99vh
+$header-height: 6vh;
+$navbar-height: 7vh;
+$board-content-height: 86vh;
+
 $column-header-height: 36px;
 $column-footer-height: 36px;
 $column-border-radius: 15px;

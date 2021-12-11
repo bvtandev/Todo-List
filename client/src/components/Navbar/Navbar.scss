@@ -1,6 +1,7 @@
 @import '../../variables';
 
 .navbar-board {
+  height: $navbar-height;
   padding-left: $gap;
   display: flex;
   align-items: center;
