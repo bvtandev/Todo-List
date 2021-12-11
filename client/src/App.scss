@@ -1,0 +1,124 @@
+@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap);
+
+$gap: 10px;
+$column-header-height: 36px;
+$column-footer-height: 36px;
+$column-border-radius: 15px;
+$cart-border-radius: 10px;
+
+$board-bg-color: #0079bf;
+$appbar-bg-color: #0067a3;
+$list-bg-color: #ebecf0;
+$comon-element-bg-color: rgba(255, 255, 255, 0.24);
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+.App {
+  // chiếm trọn chiều cao của màn hình
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 40px 50px 1fr;
+  line-height: 1.3rem;
+  background-color: $board-bg-color;
+
+  .navbar {
+    padding-left: $gap;
+    display: flex;
+    align-items: center;
+    &.app {
+      background-color: $appbar-bg-color;
+      font-size: 1.5rem;
+    }
+    &.board {
+      background-color: $board-bg-color;
+      font-size: 1.1rem;
+    }
+  }
+  .board-columns {
+    display: flex;
+    overflow-x: auto;
+    margin: 0 $gap $gap;
+    &::-webkit-scrollbar {
+      -webkit-appearance: none;
+    }
+    // horizontal chiều ngang
+    &::-webkit-scrollbar:horizontal {
+      height: 15px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: $comon-element-bg-color;
+      border-radius: 10px;
+    }
+
+    .column {
+      flex: 0 0 auto;
+      width: 300px;
+      height: calc(100% - $gap);
+      //   ko thực thi phần tử đầu tiên
+      &:not(:first-child) {
+        margin-left: $gap;
+      }
+
+      margin-bottom: $gap;
+      > * {
+        background-color: $list-bg-color;
+        color: #333333;
+        padding: 0 8px;
+      }
+      header {
+        padding-left: 15px;
+        height: $column-header-height;
+        line-height: 36px;
+        font-size: 16px;
+        font-weight: bold;
+        border-top-left-radius: $column-border-radius;
+        border-top-right-radius: $column-border-radius;
+      }
+      footer {
+        padding-left: 10px;
+        height: $column-footer-height;
+        line-height: 36px;
+        border-bottom-left-radius: $column-border-radius;
+        border-bottom-right-radius: $column-border-radius;
+      }
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+        max-height: calc(100% - #{$column-header-height} - #{$column-footer-height});
+        // xuất hiện thanh cuộn
+        overflow-y: auto;
+        &::-webkit-scrollbar {
+          -webkit-appearance: none;
+        }
+        // vertical chiều dọc
+        &::-webkit-scrollbar:vertical {
+          width: 8px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: darken($list-bg-color, 15);
+          border-right: 1px solid $list-bg-color;
+          border-radius: 8px;
+        }
+        li {
+          background-color: white;
+          padding: $gap;
+          border-radius: $cart-border-radius;
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+          &:not(:first-child) {
+            margin-bottom: $gap;
+          }
+
+          img {
+            display: block;
+            width: calc(100% + 2 * #{$gap});
+            margin: -$gap 0 $gap (-$gap);
+            border-top-left-radius: $cart-border-radius;
+            border-top-right-radius: $cart-border-radius;
+          }
+        }
+      }
+    }
+  }
+}
