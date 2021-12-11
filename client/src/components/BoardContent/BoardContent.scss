@@ -1,0 +1,18 @@
+@import '../../variables';
+
+.board {
+  display: flex;
+  overflow-x: auto;
+  margin: 0 $gap $gap;
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+  // horizontal chiều ngang
+  &::-webkit-scrollbar:horizontal {
+    height: 15px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $comon-element-bg-color;
+    border-radius: 10px;
+  }
+}

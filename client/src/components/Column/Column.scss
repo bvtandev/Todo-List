@@ -1,0 +1,54 @@
+@import '../../variables';
+
+.column {
+  flex: 0 0 auto;
+  width: 300px;
+  height: calc(100% - $gap);
+  //   ko thực thi phần tử đầu tiên
+  &:not(:first-child) {
+    margin-left: $gap;
+  }
+
+  margin-bottom: $gap;
+  > * {
+    background-color: $list-bg-color;
+    color: #333333;
+    padding: 0 8px;
+  }
+  header {
+    padding-left: 15px;
+    height: $column-header-height;
+    line-height: 36px;
+    font-size: 16px;
+    font-weight: bold;
+    border-top-left-radius: $column-border-radius;
+    border-top-right-radius: $column-border-radius;
+  }
+  footer {
+    padding-left: 10px;
+    height: $column-footer-height;
+    line-height: 36px;
+    border-bottom-left-radius: $column-border-radius;
+    border-bottom-right-radius: $column-border-radius;
+  }
+
+  ul.card-list {
+    list-style-type: none;
+    margin: 0;
+    max-height: calc(100% - #{$column-header-height} - #{$column-footer-height});
+    // xuất hiện thanh cuộn
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      -webkit-appearance: none;
+    }
+    // vertical chiều dọc
+    &::-webkit-scrollbar:vertical {
+      width: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: darken($list-bg-color, 15);
+      border-right: 1px solid $list-bg-color;
+      border-radius: 8px;
+    }
+  }
+}
