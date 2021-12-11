@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Container, Draggable } from 'react-smooth-dnd';
 import { isEmpty } from 'lodash';
 import './BoardContent.scss';
 import Column from '../Column/Column';
@@ -26,14 +27,33 @@ const BoardContent = () => {
       </div>
     );
   }
+  const onColumnDrop = (dropResult) => {
+    console.log(dropResult);
+  };
   return (
     <div className="board">
-      {columns.map((column, index) => (
-        // trien khai mang du lieu dau ra react luon co key
-        // column={column} : do du lieu ra
-        // column(props)
-        <Column key={index} column={column} />
-      ))}
+      <Container
+        // horizontal: width
+        orientation="horizontal"
+        onDrop={onColumnDrop}
+        dragHandleSelector=".column-drag-handle"
+        getChildPayload={(index) => columns[index]}
+        dropPlaceholder={{
+          animationDuration: 150,
+          showOnTop: true,
+          className: 'column-drop-preview',
+        }}
+      >
+        {columns.map((column, index) => (
+          // trien khai mang du lieu dau ra react luon co key
+          // column={column} : do du lieu ra
+          // column(props)
+          // key cua vong lap
+          <Draggable key={index}>
+            <Column column={column} />
+          </Draggable>
+        ))}
+      </Container>
     </div>
   );
 };
