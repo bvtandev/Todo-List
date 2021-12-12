@@ -6,18 +6,21 @@ $gap: 10px;
 $header-height: 6vh;
 $navbar-height: 7vh;
 $board-content-height: 86vh;
-
 $column-header-height: 36px;
 $column-footer-height: 36px;
-$column-border-radius: 15px;
-$cart-border-radius: 10px;
+
+// radius
+$column-border-radius: 8px;
+$cart-border-radius: 12px;
 
 // color
 $text-color: #333;
 $board-bg-color: #0079bf;
+$input-hover-color: #0079bf;
 $appbar-bg-color: #0067a3;
 $list-bg-color: #ebecf0;
 $comon-element-bg-color: rgba(255, 255, 255, 0.24);
+$alert-danger: #ee5253;
 
 $screen-lg: 1201px;
 $screen-md: 992px;

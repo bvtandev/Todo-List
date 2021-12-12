@@ -5,6 +5,10 @@
   height: $board-content-height;
   overflow-x: auto;
   overflow-y: hidden;
+  &:after {
+    content: '';
+    flex: 0 0 $gap;
+  }
   &::-webkit-scrollbar {
     -webkit-appearance: none;
   }
@@ -23,7 +27,7 @@
   }
   .add-new-column {
     width: 250px;
-    height: 32px;
+    max-width: 250px;
     line-height: 32px;
     padding: 4px 0 4px 15px;
     cursor: pointer;
@@ -34,6 +38,33 @@
     border-radius: $cart-border-radius;
     &:hover {
       background-color: hsla(0, 0%, 100%, 0.36);
+    }
+  }
+  .enter-new-column {
+    width: 250px;
+    max-width: 250px;
+    margin-left: $gap;
+    background-color: $list-bg-color;
+    line-height: 32px;
+    padding: 4px 10px;
+    border-radius: $cart-border-radius;
+    input.input-enter-new-column {
+      margin: 5px 0;
+      &:focus {
+        background-color: white;
+        border-radius: 10px;
+      }
+    }
+    span.cancel-new-column {
+      margin-left: $gap;
+      cursor: pointer;
+      i {
+        font-size: 18px;
+        color: $alert-danger;
+        &:hover {
+          color: darken($alert-danger, 12);
+        }
+      }
     }
   }
 }
