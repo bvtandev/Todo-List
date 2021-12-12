@@ -2,15 +2,13 @@ import React from 'react';
 
 import './Column.scss';
 import { mapOrder } from '../../utilities/sorts';
+
 import { Container, Draggable } from 'react-smooth-dnd';
 import Card from '../Card/Card';
 const Column = (props) => {
-  const { column } = props;
+  const { column, onCardDrop } = props;
   const cards = mapOrder(column.cards, column.cardOrder, 'id');
 
-  const onCardDrop = (dropResult) => {
-    console.log(dropResult);
-  };
   return (
     <div className="column">
       <header className="column-drag-handle">{column.title}</header>
@@ -18,7 +16,7 @@ const Column = (props) => {
         <Container
           groupName="vtan-columns"
           orientation="vertical" // default
-          onDrop={onCardDrop}
+          onDrop={(dropResult) => onCardDrop(column.id, dropResult)}
           getChildPayload={(index) => cards[index]}
           dragClass="card-ghost"
           dropClass="card-ghost-drop"
@@ -36,7 +34,12 @@ const Column = (props) => {
           ))}
         </Container>
       </div>
-      <footer>Add commit</footer>
+      <footer>
+        <div className="footer-actions">
+          <i className="fa fa-plus icon" />
+          Add commit
+        </div>
+      </footer>
     </div>
   );
 };
