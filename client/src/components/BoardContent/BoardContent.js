@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Container, Draggable } from 'react-smooth-dnd';
 import { Container as BootstrapContainer, Row, Col, Form, Button } from 'react-bootstrap';
 import { isEmpty } from 'lodash';
@@ -12,8 +12,9 @@ const BoardContent = () => {
   const [board, setBoard] = useState({});
   const [columns, setColumns] = useState([]);
   const [openNewColumnFrom, setOpenNewColumnFrom] = useState(false);
+  const tonggleOpenNewColumnFrom = () => setOpenNewColumnFrom(!openNewColumnFrom);
   const [newColumnTitle, setNewColumnTitle] = useState('');
-  const onNewColumnTitleChange = useCallback((e) => setNewColumnTitle(e.target.value), []);
+  const onNewColumnTitleChange = (e) => setNewColumnTitle(e.target.value);
 
   // newColumnInputRef: chưa input
   const newColumnInputRef = useRef(null);
@@ -67,13 +68,11 @@ const BoardContent = () => {
     }
   };
 
-  const tonggleOpenNewColumnFrom = () => setOpenNewColumnFrom(!openNewColumnFrom);
   const addNewColumn = () => {
     if (!newColumnTitle) {
       newColumnInputRef.current.focus();
       return;
     }
-
     const newColumnToAdd = {
       // random 1 string gom 5 ki tu
       // will remove when we implement codo api
@@ -116,6 +115,7 @@ const BoardContent = () => {
     setColumns(newColumns);
     setBoard(newBoard);
   };
+
   return (
     <div className="board">
       <Container
@@ -165,9 +165,9 @@ const BoardContent = () => {
                 onKeyDown={(event) => event.key === 'Enter' && addNewColumn()}
               />
               <Button variant="success" size="sm" onClick={addNewColumn}>
-                Add card
+                Add table
               </Button>
-              <span className="cancel-new-column" onClick={tonggleOpenNewColumnFrom}>
+              <span className="cancel-icon" onClick={tonggleOpenNewColumnFrom}>
                 <i className="fa fa-times icon" />
               </span>
             </Col>
